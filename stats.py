@@ -45,7 +45,6 @@ Options:
 
 import exifread
 import docopt
-import collections
 import unicodedata
 from os import listdir
 from os.path import isfile, join
