@@ -44,7 +44,9 @@ Options:
 """
 
 import exifread
-import docopt
+from docopt import docopt
+import collections
+import unicodedata
 from os import listdir
 from os.path import isfile, join
 
@@ -63,10 +65,37 @@ def returnattribute(image, attribute):
     try:
         f = open(image, 'rb')
         tags = exifread.process_file(f)
-        print tags[attribute]
+        result = str(tags[attribute])
     except KeyError:
         #print "Attribute: " + attribute
+        result = None
+    finally:
+        return result
+
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
         pass
+    try:
+        unicodedata.numeric(s)
+        return True
+    except (TypeError, ValueError):
+        pass
+
+    return False
+
+def parseresults(imageresults):
+    for r in imageresults:
+        print r
+        b = imageresults[r].keys()
+        b.sort()
+        for v in b:
+            count = "+" * imageresults[r][v]
+            print "\t{0}\t {1}".format(v, count)
+
+        print ""
 
 if __name__ == '__main__':
     arguments = docopt.docopt(__doc__, version=__version__)
@@ -76,10 +105,25 @@ if __name__ == '__main__':
     if directory is None:
         directory = "."
 
+    imageresults = {}
+
     for f in findimages(directory):
         if f.endswith(".jpg"):
             for e in arguments["<EXIF Attr>"]:
                 attribute = "EXIF %s" % e
-                returnattribute(join(directory,f), attribute)
 
+                val = returnattribute( join(directory, f), attribute)
+                if val is not None:
+                    if is_number(val):
+                        val = int(val)
 
+                    if e in imageresults:
+                        if val in imageresults[e]:
+                            imageresults[e][val] += 1
+                        else:
+                            imageresults[e][val] = 1
+                    else:
+                        imageresults[e] = {}
+                        imageresults[e][val] = 1
+
+    parseresults(imageresults)
