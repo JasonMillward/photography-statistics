@@ -9,7 +9,7 @@ Copyright (c) 2014, Jason Millward
 @license    http://opensource.org/licenses/MIT
 
 Usage:
-    stats.py <EXIF Attr>... [--avg] [--dir=<dir>]
+    stats.py <EXIF Attr>... [--dir=<dir>]
 
 """
 
@@ -66,15 +66,13 @@ def parseresults(imageresults):
 
         print ""
 
-if __name__ == '__main__':
-    arguments = docopt.docopt(__doc__, version=__version__)
+def statistics(arguments):
+    imageresults = {}
 
     directory = arguments["--dir"]
 
     if directory is None:
         directory = "."
-
-    imageresults = {}
 
     for f in findimages(directory):
         if f.endswith(".jpg"):
@@ -96,3 +94,7 @@ if __name__ == '__main__':
                         imageresults[e][val] = 1
 
     parseresults(imageresults)
+if __name__ == '__main__':
+    arguments = docopt.docopt(__doc__, version=__version__)
+    statistics(arguments)
+
