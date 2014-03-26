@@ -8,7 +8,6 @@ Requirements
 
 * python 2.7
 * exifread
-
 	```pip install exifread```
 
 
