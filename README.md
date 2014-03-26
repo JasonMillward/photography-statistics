@@ -4,9 +4,9 @@ Python library to extract statistics in an easy to read format.
 
 ### Installation
 
-Requirements 
+Requirements
 
-* python 2.7 
+* python 2.7
 * exifread
 
 	```pip install exifread```
@@ -14,17 +14,30 @@ Requirements
 
 ### Usage
 
-```photostats.py [directory] ```
+```photostats.py <EXIF Attr>... [--dir=<dir>] ```
 
 ### Results (Hopefully)
 
 
 ```
-Focal Length stats
+$ python stats.py FocalLength WhiteBalance ISOSpeedRatings test --dir ./images/
 
-55mm  ||||||||
-80mm  |||
-120mm ||||
 
-Avg: 8mm
+EXIF ISOSpeedRatings
+    100     +
+    200     ++++++
+    250     ++++++++
+    400     +
+    500     +
+    1600    +
+EXIF FocalLength
+    18      +
+    21      ++++++
+    96      +
+    109     +
+    135     ++++++++
+    163     +
+EXIF WhiteBalance
+    Auto    ++++++++++++++++++
+
 ```
