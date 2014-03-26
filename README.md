@@ -16,11 +16,10 @@ Requirements
 
 ```photostats.py <EXIF Attr>... [--dir=<dir>] ```
 
-### Results (Hopefully)
-
+### Results
 
 ```
-$ python stats.py FocalLength WhiteBalance ISOSpeedRatings test --dir ./images/
+$ python stats.py FocalLength WhiteBalance ISOSpeedRatings --dir ./images/
 
 
 EXIF ISOSpeedRatings
