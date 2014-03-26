@@ -44,7 +44,7 @@ Options:
 """
 
 import exifread
-from docopt import docopt
+import docopt
 import collections
 import unicodedata
 from os import listdir
