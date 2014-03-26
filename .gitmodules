@@ -1,6 +1,0 @@
-[submodule "exif-py"]
-	path = exif-py
-	url = https://github.com/ianare/exif-py.git
-[submodule "docopt"]
-	path = docopt
-	url = https://github.com/docopt/docopt.git
