@@ -9,7 +9,7 @@ Copyright (c) 2014, Jason Millward
 @license    http://opensource.org/licenses/MIT
 
 Usage:
-    stats.py <EXIF Attr>... [--dir=<dir>]
+    stats.py <EXIF Attr>... [--avg] [--dir=<dir>]
 
 """
 
